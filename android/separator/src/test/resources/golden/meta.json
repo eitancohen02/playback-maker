@@ -1,0 +1,14 @@
+{
+  "model": "UVR-MDX-NET-Inst_HQ_4.onnx",
+  "sample_rate": 44100,
+  "samples": 352800,
+  "overlap": 0.25,
+  "n_fft": 5120,
+  "hop_length": 1024,
+  "dim_f": 2560,
+  "dim_t": 256,
+  "compensate": 1.019,
+  "chunk_size": 261120,
+  "primary_stem": "Instrumental",
+  "peak": 0.6862680315971375
+}

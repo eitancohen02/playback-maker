@@ -5,3 +5,7 @@ build/
 dist/
 vendor/
 *.zip
+android/.gradle/
+android/**/build/
+android/local.properties
+.kotlin/

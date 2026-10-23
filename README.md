@@ -19,6 +19,18 @@ Turns a YouTube link into a high-quality **no-vocal playback** (instrumental).
    - The first run downloads the separation model (one time, up to ~600 MB) to `%LOCALAPPDATA%\PlaybackMaker\models`.
    - Needs ~3 GB free disk space. Results go to `Music\Playback Maker` by default.
 
+## Download for Android
+1. On your phone, download `PlaybackMaker-android.apk` from the GitHub **Releases** page and open it.
+   - **Samsung (One UI 6+):** first turn off *Settings -> Security and privacy -> Auto Blocker*, which blocks
+     installing apps from outside the stores. You can turn it back on after installing (turn it off again for updates).
+   - Allow *Install unknown apps* for your browser when asked. Play Protect may warn about an unknown app: tap *Install anyway*.
+2. In the YouTube app, open a song and tap **Share -> Playback Maker** (or paste a link in the app), then **Make playback**.
+   - The first run downloads the separation model (59 MB, one time only).
+   - It keeps running if you leave the app; progress shows in the notification. Results go to `Music/Playback Maker`.
+   - The phone uses the fast MDX-Net model (the desktop `-q fast` preset): good results, a bit less clean than
+     the desktop `balanced`/`best` presets. Expect about 1.5-2x the song's length (e.g. ~10 min for a 6-min song on a Galaxy A56).
+   - Android 10 or newer, 64-bit phone; 6 GB+ RAM recommended.
+
 ## Setup (running from source)
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh   # once, if you don't have uv
@@ -49,5 +61,18 @@ Or let GitHub build it: push a tag (`git tag v0.1.0 && git push --tags`) and the
 *Build Windows app* workflow attaches the zip to a release (or run it manually from the Actions tab).
 Rebuild every so often: YouTube changes regularly break old yt-dlp versions.
 
+## Building the Android app
+The app lives in `android/` (Kotlin + Jetpack Compose). The separation code (`android/separator/`) is a port of
+audio-separator's MDX-Net path, tested against reference output from `tools/make_mdx_golden.py`:
+```bash
+cd android
+./gradlew :separator:test       # compares the Kotlin port with audio-separator's output
+./gradlew :app:assembleDebug    # debug APK in app/build/outputs/apk/debug/
+```
+Needs JDK 17 and the Android SDK (`ANDROID_HOME` or `android/local.properties`). Release builds are signed with
+the key in `~/.android-keys/keystore.properties` locally, or from repository secrets in the *Build Android app*
+workflow, which attaches `PlaybackMaker-android.apk` to the release on `v*` tags.
+
 ## License
 MIT (see `LICENSE`). Bundled third-party components keep their own licenses: see `THIRD_PARTY_LICENSES.txt`.
+The Android APK includes youtubedl-android (GPL-3.0), so the APK as a whole is distributed under GPL-3.0; its full source is this repository.

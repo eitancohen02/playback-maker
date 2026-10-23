@@ -25,3 +25,15 @@ Other Python packages: see the license files in the _internal folder
 
 Separation models are not bundled; they are downloaded on first use from their
 authors' public releases and remain subject to their authors' terms.
+
+Android app (PlaybackMaker-android.apk)
+---------------------------------------
+youtubedl-android (Python, yt-dlp, ffmpeg, QuickJS builds)
+                               GPL-3.0    https://github.com/yausername/youtubedl-android
+  Because of this component the APK as a whole is distributed under GPL-3.0;
+  the complete corresponding source is https://github.com/eitancohen02/playback-maker
+onnxruntime-android            MIT        https://github.com/microsoft/onnxruntime
+JTransforms, JLargeArrays       BSD-2-Clause https://github.com/wendykierp/JTransforms
+Apache Commons Math, IO        Apache-2.0 https://commons.apache.org
+AndroidX / Jetpack Compose     Apache-2.0 https://developer.android.com/jetpack/androidx
+Kotlin standard library        Apache-2.0 https://kotlinlang.org
