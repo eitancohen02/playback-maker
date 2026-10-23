@@ -1,0 +1,16 @@
+[project]
+name = "playback-maker"
+version = "0.1.0"
+description = "Turn a YouTube link into a high-quality no-vocal playback (instrumental)"
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "yt-dlp",
+    "audio-separator[cpu]",
+    "static-ffmpeg",
+]
+
+[tool.uv]
+package = false
+
+[dependency-groups]
+dev = ["pyinstaller"]
